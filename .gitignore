@@ -1,6 +1,6 @@
 # allow local overwriting of please.build
 .plzconfig.local
 # ignore gradle build files
-.gradle/**
+.gradle/
 # ignore plz build files
-plz-out/**
+plz-out/
