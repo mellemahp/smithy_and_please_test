@@ -1,0 +1,40 @@
+[please]
+version = >=14.6.0
+
+[build]
+path = /usr/local/bin:/usr/bin:/bin
+; It's quite likely that anyone using Rust will have it here.
+path = ~/.cargo/bin
+path = ~/.yarn/bin
+
+[go]
+importpath = github.com/thought-machine/pleasings
+
+[buildconfig]
+grm-test-main = //grm:test_main
+grpc-gateway-plugin = //third_party/go:protoc-gen-grpc-gateway
+grpc-gateway-dep = //third_party/proto:grpc_gateway_api
+grpc-gateway-go-dep = //third_party/go:grpc-gateway
+grpc-swagger-plugin = //third_party/go:protoc-gen-swagger
+webpack-tool = //js/webpack
+rust-toolchain = //third_party/rust:toolchain
+; This doesn't exist but serves as an example.
+default-docker-repo = repo.please.build
+; yarn
+yarn-workspace = //js/yarn_workspace_example:workspace
+yarn-offline-mirror = js/yarn_workspace_example/third_party
+
+[proto]
+protoctool = //third_party/proto:protoc
+protocgoplugin = //third_party/go:protoc-gen-go
+grpcjavaplugin = //third_party/java:protoc-gen-grpc-java
+
+[python]
+moduledir = third_party.python
+
+[java]
+javacworker = //java/error_prone:javac_worker
+sourcelevel = 7
+targetlevel = 7
+defaultmavenrepo = https://repo1.maven.org/maven2
+defaultmavenrepo = https://maven.google.com

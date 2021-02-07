@@ -1,0 +1,98 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Weather",
+        "version": "2006-03-01",
+        "description": "Provides weather forecasts."
+    },
+    "paths": {
+        "/city/{cityId}": {
+            "get": {
+                "description": "Get Cities",
+                "operationId": "GetCity",
+                "parameters": [
+                    {
+                        "name": "cityId",
+                        "in": "path",
+                        "schema": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9 ]+$"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "GetCity 200 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetCityResponseContent"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "NoSuchResource 400 response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NoSuchResourceResponseContent"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CityCoordinates": {
+                "type": "object",
+                "properties": {
+                    "latitude": {
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true
+                    },
+                    "longitude": {
+                        "type": "number",
+                        "format": "float",
+                        "nullable": true
+                    }
+                },
+                "required": [
+                    "latitude",
+                    "longitude"
+                ]
+            },
+            "GetCityResponseContent": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "coordinates": {
+                        "$ref": "#/components/schemas/CityCoordinates"
+                    }
+                },
+                "required": [
+                    "coordinates",
+                    "name"
+                ]
+            },
+            "NoSuchResourceResponseContent": {
+                "type": "object",
+                "properties": {
+                    "resourceType": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "resourceType"
+                ]
+            }
+        }
+    }
+}
